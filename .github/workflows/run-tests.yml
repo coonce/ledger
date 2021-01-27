@@ -1,0 +1,18 @@
+name: run-tests
+
+on: push
+
+jobs:
+    win:
+        runs-on: windows-latest
+        defaults:
+            run:
+                shell: msys2 {0}
+        steps:
+        - uses: msys2/setup-msys2@v2
+          with:
+              install: base-devel git mingw-w64-cmake mingw-w64-boost
+        - uses: actions/checkout@v2
+        - name: Do tests
+          run: |
+              ./acprep opt make
