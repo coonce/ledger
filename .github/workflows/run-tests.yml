@@ -11,8 +11,18 @@ jobs:
         steps:
         - uses: msys2/setup-msys2@v2
           with:
-              install: base-devel git mingw-w64-cmake mingw-w64-boost
+              update: true
+              install: >-
+                  base-devel
+                  git
+                  mingw-w64-x86_64-cmake
+                  mingw-w64-x86_64-make
+                  mingw-w64-x86_64-boost
+                  mingw-w64-x86_64-gcc
         - uses: actions/checkout@v2
-        - name: Do tests
+        - name: Compile
           run: |
               ./acprep opt make
+        - name: Test
+          run: |
+              make test
