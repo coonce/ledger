@@ -11,7 +11,6 @@ jobs:
         steps:
         - uses: msys2/setup-msys2@v2
           with:
-              msystem: MINGW64
               install: >-
                   make
                   mingw-w64-x86_64-python
@@ -24,4 +23,5 @@ jobs:
               ./acprep opt make
         - name: Test
           run: |
-              make test
+            set MSYS=enable_pcon
+            msys2 -c 'make test'
