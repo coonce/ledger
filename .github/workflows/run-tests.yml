@@ -27,3 +27,8 @@ jobs:
             set MSYS=enable_pcon
             msys2 -c 'make test'
           shell: cmd
+        - name: Save Test Log
+          uses: actions/upload-artifact@v2
+          with:
+            name: lastlog
+            path: Testing/Temporary/LastTest.log
