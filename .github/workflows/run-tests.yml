@@ -26,6 +26,7 @@ jobs:
           run: |
             make test
         - name: Save Test Log
+          if: ${{ always() }}
           uses: actions/upload-artifact@v2
           with:
             name: lasttest-log
