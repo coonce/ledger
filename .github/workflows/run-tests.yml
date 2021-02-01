@@ -12,6 +12,7 @@ jobs:
         - name: Setup
           uses: msys2/setup-msys2@v2
           with:
+              path-type: strict
               install: >-
                   make
                   mingw-w64-x86_64-python
@@ -21,13 +22,13 @@ jobs:
         - uses: actions/checkout@v2
         - name: Compile
           run: |
-            ./acprep opt make
+              ./acprep opt make
         - name: Test
           run: |
-            make test
+              make test
         - name: Save Test Log
           if: ${{ always() }}
           uses: actions/upload-artifact@v2
           with:
-            name: lasttest-log
-            path: Testing/Temporary/LastTest.log
+              name: lasttest-log
+              path: Testing/Temporary/LastTest.log
